@@ -412,7 +412,8 @@ const giftMe = res => ME[res.gift] || res.gift;
 /* ---------- Экран ---------- */
 const $ = id => document.getElementById(id);
 let answers = [], cur = 0, result = null;
-let timers = [], lockUntil = 0;
+let timers = [];
+let lastTap = { t: -1e9, x: 0, y: 0 };
 let shareFile = null, sharePrep = null, shareBusy = false;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -468,13 +469,12 @@ function renderQuestion(focus) {
     const b = document.createElement('button');
     b.className = 'pill ans' + (answers[cur] === i ? ' picked' : ''); b.type = 'button'; b.textContent = tipo(a);
     b.setAttribute('aria-pressed', answers[cur] === i ? 'true' : 'false');
-    b.addEventListener('click', () => choose(i, b));
+    b.addEventListener('click', e => choose(i, b, e));
     box.appendChild(b);
   });
   blocks(); layoutMark();
   if (focus) {
-    /* новые ответы встают на место старых: короткая пауза, чтобы второе быстрое нажатие не ответило на следующий вопрос */
-    lockUntil = performance.now() + 380;
+    /* новые ответы проявляются; от двойного касания защищает choose() */
     box.classList.remove('in'); void box.offsetWidth; box.classList.add('in');
     $('q').focus({ preventScroll: true }); window.scrollTo(0, 0); swing($('qBall'));
   }
@@ -484,14 +484,18 @@ const SID = Date.now().toString(36);            /* метка этого зах�
 try { history.replaceState({ v: 0, s: SID }, ''); } catch (e) {}
 try { history.scrollRestoration = 'manual'; } catch (e) {}   /* при возврате по истории страницу ставим в начало сами */
 function push(v) { try { history.pushState({ v, s: SID }, ''); } catch (e) {} }
-function choose(i, btn) {
-  if (performance.now() < lockUntil) return;
+/* Защита от двойного касания (2026-11-18): второе касание в то же место в течение 0,3 с не отвечает на следующий вопрос.
+   Быстрые нажатия на другие ответы проходят: раньше после каждого ответа нажатия терялись 0,6 с, и пройти заново было трудно. */
+function choose(i, btn, e) {
+  const now = performance.now(), touch = e && e.detail > 0;
+  if (touch && now - lastTap.t < 300 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 24) return;
+  if (touch) lastTap = { t: now, x: e.clientX, y: e.clientY };
   answers[cur] = i;
   [...$('answers').children].forEach(b => { b.classList.remove('picked'); b.setAttribute('aria-pressed', 'false'); b.disabled = true; });
   btn.classList.add('picked'); btn.setAttribute('aria-pressed', 'true');
   timers.push(setTimeout(() => {
     if (cur < QUESTIONS.length - 1) { cur++; push(cur); renderQuestion(true); } else { push('res'); finish(); }
-  }, reduce ? 0 : 220));
+  }, reduce ? 0 : 160));
 }
 function finish() {
   clearTimers();
