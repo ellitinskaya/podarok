@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Что тебе подарит муж?</title>
-<meta name="description" content="8 вопросов про него. В конце узнаешь, что он подарит тебе на Новый год.">
+<meta name="description" content="9 вопросов про него и немного про тебя. В конце узнаешь, что он подарит тебе на Новый год.">
 <meta name="theme-color" content="#EAE0CF">
 <meta name="color-scheme" content="only light">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Что тебе подарит муж?">
-<meta property="og:description" content="8 вопросов про него. В конце узнаешь, что он подарит тебе на Новый год.">
+<meta property="og:description" content="9 вопросов про него и немного про тебя. В конце узнаешь, что он подарит тебе на Новый год.">
 <meta property="og:url" content="https://ellitinskaya.github.io/podarok/">
 <meta property="og:image" content="https://ellitinskaya.github.io/podarok/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -119,7 +119,7 @@
   .back { background: none; border: 0; padding: 0 12px 0 0; min-height: 44px; margin: -9px 0; color: var(--accent); }
   .step { margin-left: auto; color: var(--accent); }
   .bar { position: relative; z-index: 2; height: 1px; margin-top: 8px; background: var(--rule); }
-  .bar i { display: block; height: 100%; width: 12.5%; background: var(--accent); }
+  .bar i { display: block; height: 100%; width: 11.1%; background: var(--accent); }
   @media (prefers-reduced-motion: no-preference) { .bar i { transition: width .25s ease; } }
   #quiz .env { width: 72%; right: -16%; top: 52px; transform: rotate(9deg); }
   #quiz .photo { width: 40%; left: -3%; bottom: 7%; transform: rotate(-7deg); }
@@ -154,6 +154,7 @@
 
   /* ---------- итог ---------- */
   .result { position: relative; max-width: 560px; margin: 0 auto; padding: 22px var(--pad) 28px; }
+  @media (max-width: 899px) { .result { overflow-x: clip; } }   /* конверт за листом не вылезает за край телефона: страница не ездит вбок (2026-11-19). clip, а не hidden, — чтобы кнопка «Отправить» осталась прилипшей */
   .res-title { position: relative; z-index: 2; }   /* заголовок поверх выглядывающего конверта */
   .res-title:focus { outline: none; }
   .res-collage { position: relative; display: flow-root; margin-top: 18px; }   /* flow-root: отступ листа не утаскивает весь блок вниз */
@@ -165,6 +166,9 @@
   .wish { font-size: var(--t-wish); line-height: 1.25; margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1.5px dotted rgba(78, 42, 30, .45); }
   .gift { font-size: var(--t-gift); line-height: var(--lh-gift); margin-bottom: 12px; }
   .line { max-width: 30em; }
+  /* «Выбирал» и «Скажет» под строкой итога (версия 6, 2026-11-19) */
+  .extra { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; align-items: baseline; margin: 14px 0 0; padding-top: 12px; border-top: 1.5px dotted rgba(78, 42, 30, .45); font-size: 14px; line-height: 19px; }
+  .extra dt { margin: 0; } .extra dd { margin: 0; }
   .send-wrap { position: sticky; bottom: 0; z-index: 3; margin: 22px calc(-1 * var(--pad)) 0; padding: 10px var(--pad) calc(10px + env(safe-area-inset-bottom, 0px));
     background: linear-gradient(180deg, var(--bg-0), var(--bg) 14px); }
   .send { display: block; width: 100%; min-height: 56px; border: 0; background: var(--btn); color: var(--on-accent); }
@@ -183,7 +187,7 @@
   .st-env { position: relative; width: min(330px, 82vw); }
   .st-env img { position: relative; z-index: 1; display: block; width: 100%; height: auto; filter: drop-shadow(0 20px 26px rgba(60, 30, 10, .35)); }
   .st-letter { position: absolute; z-index: 0; left: 9%; top: 8%; width: 82%; height: 80%; overflow: hidden; background: var(--note) var(--noise); padding: 14px 14px; color: var(--ink); font-size: 9px; line-height: 12px; }
-  .st-letter .lbl { font-size: 7px; } .st-letter .wish { font-size: 12px; margin-bottom: 7px; padding-bottom: 7px; } .st-letter .gift { font-size: 14px; line-height: 17px; margin: 0; } .st-letter .line { display: none; }
+  .st-letter .lbl { font-size: 7px; } .st-letter .wish { font-size: 12px; margin-bottom: 7px; padding-bottom: 7px; } .st-letter .gift { font-size: 14px; line-height: 17px; margin: 0; } .st-letter .line, .st-letter .extra { display: none; }
   .st-glow { position: absolute; z-index: 2; left: 50%; top: 57%; width: 160px; height: 160px; margin: -80px 0 0 -80px; border-radius: 50%; pointer-events: none; opacity: 0;
     background: radial-gradient(circle, rgba(255, 255, 255, .95) 0, rgba(255, 246, 232, .55) 30%, rgba(255, 240, 220, 0) 70%); }
 
@@ -238,7 +242,7 @@
     <div class="bar" aria-hidden="true"><i id="bar"></i></div>
     <div id="intro">
       <p aria-hidden="true"><span class="s1">Что тебе</span><span class="s2">подарит муж?</span></p>
-      <p class="lead">8&nbsp;вопросов про него. В&nbsp;конце узнаешь, что он подарит тебе на&nbsp;Новый год.</p>
+      <p class="lead">9&nbsp;вопросов про него и&nbsp;немного про&nbsp;тебя. В&nbsp;конце узнаешь, что он подарит тебе на&nbsp;Новый год.</p>
     </div>
     <div class="ask">
       <div class="note"><span class="tape" aria-hidden="true"></span>
@@ -296,61 +300,83 @@
 
 <script>
 const WHO = [['муж','мужу','Муж'],['парень','парню','Парень']];
-/* ---------- Тексты (docs/copy.md, раздел 9, версия 5 от 2026-11-17) ---------- */
+/* ---------- Тексты (docs/copy.md, разделы 15–16, версия 7 от 2026-11-19) ---------- */
 const QUESTIONS = [
   { id:'who',   q:'Кто он тебе?', a:['Муж','Парень'] },
-  { id:'time',  q:'Когда он обычно покупает подарки?', s:[3,2,1,0], a:['За пару недель','За пару дней','31 декабря','Забывает'] },
-  { id:'last',  q:'Что он подарил в прошлый Новый год?', s:[2,1,0,-1], a:['То, что я хотела','Что-то для дома','Деньги','Не помню'] },
-  { id:'hints', q:'Как он понимает намёки?', s:[3,2,1,0], a:['С первого раза','Со второго-третьего','Только если прислать ссылку','Никак'] },
-  { id:'ring',  q:'Он знает твой размер кольца?', s:[2,1,0], a:['Да','Примерно','Нет'] },
-  { id:'kin',   q:'Кто покупает подарки его родным?', s:[2,1,0], a:['Он сам','Вместе','Я'] },
-  { id:'says',  q:'Что он говорит про подарки в декабре?', s:[1,0,-1,-1], a:['Спрашивает, что я хочу','Говорит, что всё под контролем','Предлагает в этом году без подарков','Ничего не говорит'] },
-  { id:'wish',  q:'Что ты хочешь в подарок?', a:['Украшение','Поездку','Духи или косметику','Сюрприз'] },
+  { id:'time',  q:'Где он будет 31 декабря в девять вечера?', s:[3,2,1,0], a:['Дома, подарок давно спрятан','Ждёт курьера, заказал позавчера','Бегает по торговому центру','Заезжает на заправку за цветами'] },
+  { id:'her',   q:'Что ты отвечаешь на «что тебе подарить?»', s:[2,1,0,-1], a:['Говорю прямо и присылаю ссылку','Намекаю с октября','«Сам придумай»','«Ничего не надо»'] },
+  { id:'last',  q:'Где сейчас его прошлогодний подарок?', s:[2,0,-1,-1], a:['Ношу и люблю','Лежит в шкафу с биркой','Передарила маме','А был подарок?'] },
+  { id:'reel',  q:'Ты отправила ему рилс с намёком. Что он сделал?', s:[3,2,1,0], a:['Молча купил','Спросил: «Это намёк?»','Поставил лайк и забыл','Не открыл, там уже сорок непрочитанных'] },
+  { id:'ring',  q:'Спроси его, какой у тебя размер кольца. Что он ответит?', s:[2,1,0], a:['Назовёт без запинки','Скажет: «Ну… средний?»','Удивится, что у колец есть размеры'] },
+  { id:'mom',   q:'Кто покупает подарок его маме?', s:[2,1,0,0], a:['Он сам, ещё и упакует','Выбираем вместе','Я выбираю, он переводит деньги','Я покупаю, а дарит он'] },
+  { id:'says',  q:'Что он скажет ближе к Новому году?', s:[1,0,-1,-1], a:['«Что ты хочешь? Только конкретно»','«Всё под контролем»','«Может, в этом году без подарков?»','«А что, уже декабрь?»'] },
+  { id:'wish',  q:'Что ты хочешь в подарок?', a:['Украшение','Поездку','Духи или косметику','Сюрприз','Чтобы сам догадался'] },
 ];
-const WISH = ['украшение', 'поездку', 'духи или косметику', 'сюрприз'];
+const WISH = ['украшение', 'поездку', 'духи или косметику', 'сюрприз', 'чтобы сам догадался'];
+/* итог: подарок крупно, под ним строка, «Выбирал» и «Скажет» */
 const GIFT = {
-  none:   'Ничего. Вы же договорились без подарков.',
-  gas:    'Цветы и шоколадку с заправки.',
-  self:   'То, что ты купишь себе сама.',
-  cert:   'Сертификат, купленный 31 декабря в 21:40.',
-  money:  'Деньги на карту.',
-  useful: 'Что-то для дома. Скорее всего, сковородку.',
-  list:   'То, что ты пришлёшь ему ссылкой.',
-  ok:     'Хороший подарок. Только не тот, что ты хочешь.',
+  agreed:     'Ничего. Вы же договорились без подарков.',
+  said:       'Ничего. Ты же сама сказала.',
+  gas:        'Цветы и шоколадку с заправки.',
+  cert:       'Сертификат, купленный 31 декабря в 21:40.',
+  self:       'То, что ты купишь себе сама.',
+  money:      'Деньги на карту с комментарием «С НГ».',
+  list:       'То, что ты пришлёшь ему ссылкой.',
+  useful:     'Что-то для дома. Скорее всего, сковородку.',
+  mom:        'Подарок твоей маме. Напрямую.',
+  consultant: 'То, что понравилось консультанту.',
 };
-const GOOD = ['Украшение, которое ты хотела.', 'Поездку, о которой ты говорила.', 'Твои любимые духи.', 'Сюрприз, и он тебе понравится.'];
+const GOOD = ['Украшение, которое ты хотела.', 'Поездку, о которой ты говорила.', 'Твои любимые духи.', 'Сюрприз, и он тебе понравится.', 'Он догадался. Сама в шоке.'];
 const NOTE = {
-  none:   'Он правда думает, что ты согласилась.',
-  good:   'Такое выпадает редко. Береги его.',
-  gas:    'Про Новый год он вспомнит 31 декабря по дороге домой.',
-  self:   'Подарки его родным тоже покупаешь ты.',
-  cert:   'Магазин выберет тот, что ближе к дому.',
-  money:  'Как и в прошлый раз.',
-  useful: 'В прошлый раз было так же.',
-  list:   'Ссылку лучше прислать до 20 декабря.',
-  ok:     'Чтобы угадал, отправь ему эту картинку.',
+  agreed:     'Он правда думает, что ты согласилась.',
+  said:       'Единственное, что он запомнил с первого раза.',
+  gas:        'Про Новый год он вспомнит 31 декабря по дороге домой.',
+  cert:       'Магазин он выберет по одному признаку: ближе к парковке.',
+  self:       'Подарок его маме тоже покупаешь ты.',
+  money:      'Маме ты выбирала сама, себе тоже выберешь.',
+  list:       'Пришли до 20 декабря, иначе доставка не успеет.',
+  useful:     'Ты же сказала: «Сам придумай». Он придумал.',
+  mom:        'Прошлогодний всё равно уехал к ней.',
+  consultant: 'Чек он на всякий случай сохранит.',
+  good:       'Такое выпадает редко. Береги его.',
 };
-/* ---------- Как выбирается подарок (docs/copy.md, 9.4–9.7). Эталон — proverki/pravila-v5.js ---------- */
+/* «Выбирал» — у каждого итога своё число: его пишут в комментариях («у меня 0 минут») */
+const TOOK = { agreed:'0 минут', said:'0 минут', gas:'3 минуты, пока заправлялся', cert:'4 минуты, из них 3 — в очереди', self:'0 минут', money:'1 минуту, искал тебя в контактах',
+  list:'30 секунд: нажал «Купить»', useful:'10 минут в отделе посуды', mom:'5 минут на звонок твоей маме', consultant:'15 минут, из них 14 слушал консультанта', good:'2 недели' };
+const SAY = { agreed:'«Мы же договорились»', said:'«Я же тебя слушаю»', gas:'«Зато от души»', cert:'«Выберешь сама, что нравится»',
+  self:'«Ты же лучше знаешь, что тебе нужно»', money:'«Так практичнее»', list:'«Скинь ссылку, закажу»', useful:'«Ты же говорила, что старая пригорает»',
+  mom:'«Чтобы два раза не возить»', consultant:'«В магазине сказали, что всем нравится»', good:'«Я всё помню»' };
+/* ---------- Как выбирается подарок (docs/copy.md, раздел 15). Эталон — proverki/pravila-v6.js ---------- */
 function buildResult(ans) {
   const sc = i => QUESTIONS[i].s[ans[i]];
   const who = WHO[ans[0]];
-  const T = sc(1), H = ans[2], A = sc(3), R = sc(4), I = sc(5), says = ans[6], wish = ans[7];
-  const score = T + sc(2) + A + R + I + sc(6);           /* от −2 до 13 */
+  const time = ans[1], her = ans[2], last = ans[3], reel = ans[4], ring = ans[5], mom = ans[6], says = ans[7], wish = ans[8];
+  let score = 0; for (let i = 1; i <= 7; i++) score += sc(i);   /* от −3 до 15 */
   let key;
-  if (says === 2 && score <= 6) key = 'none';
-  else if (T === 0) key = 'gas';
+  if (says === 2 && score <= 4) key = 'agreed';                 /* «Может, в этом году без подарков?» */
+  else if (her === 3 && score <= 4) key = 'said';               /* «Ничего не надо» */
+  else if (time === 3 || (says === 3 && score <= 3)) key = 'gas'; /* заправка или «А что, уже декабрь?» */
   else if (score >= 9) key = 'good';
-  else if (I === 0 && score <= 5) key = 'self';
-  else if (T === 1) key = 'cert';
-  else if (H === 2) key = 'money';
-  else if (H === 1) key = 'useful';
-  else if (A <= 1) key = 'list';
-  else key = 'ok';
+  else if (mom === 3 && score <= 5) key = 'self';               /* «Я покупаю, а дарит он» */
+  else if (last === 2) key = 'mom';                             /* «Передарила маме» */
+  else if (time === 2) key = 'cert';                            /* «Бегает по торговому центру» */
+  else if (her === 2) key = 'useful';                           /* «Сам придумай» */
+  else if (mom === 2) key = 'money';                            /* «Я выбираю, он переводит деньги» */
+  else if (reel >= 2) key = 'list';                             /* лайк или не открыл */
+  else key = 'consultant';
   const gift = key === 'good' ? GOOD[wish] : GIFT[key];
   let note = NOTE[key];
-  if (key === 'good' && says === 2) note = 'А «без подарков» он сказал для отвода глаз.';
-  else if (key === 'ok' && wish === 0 && R === 0) note = 'Если это кольцо, то не того размера.';
-  return { key, score, who, wish: WISH[wish], gift, note, button: 'Отправить ' + who[1], good: key === 'good' };
+  if (key === 'good') {
+    if (her === 3) note = 'В «ничего не надо» он не поверил.';
+    else if (says === 2) note = 'А «без подарков» он сказал для отвода глаз.';
+  }
+  else if (wish === 4) note = 'Ты хотела, чтобы сам догадался. Он не догадался.';
+  else if (key === 'list' && reel === 3) note = 'Ссылку он увидит сорок первым сообщением.';
+  else if (key === 'consultant') {
+    if (wish === 0 && ring !== 0) note = 'Если это кольцо, то не того размера.';
+    else if (last === 1) note = 'Бирку можно не срезать.';
+  }
+  return { key, score, who, wish: WISH[wish], gift, note, took: TOOK[key], say: SAY[key], button: 'Отправить ' + who[1], good: key === 'good' };
 }
 function shareText(res) {
   const url = location.href.split('#')[0].split('?')[0];
@@ -362,7 +388,8 @@ const title = (res, me) => 'Что ' + (me ? 'мне' : 'тебе') + ' пода
 const ME = {
   'То, что ты купишь себе сама.': 'То, что я куплю себе сама.',
   'То, что ты пришлёшь ему ссылкой.': 'То, что я пришлю ему ссылкой.',
-  'Хороший подарок. Только не тот, что ты хочешь.': 'Хороший подарок. Только не тот, что я хочу.',
+  'Ничего. Ты же сама сказала.': 'Ничего. Я же сама сказала.',
+  'Подарок твоей маме. Напрямую.': 'Подарок моей маме. Напрямую.',
   'Украшение, которое ты хотела.': 'Украшение, которое я хотела.',
   'Поездку, о которой ты говорила.': 'Поездку, о которой я говорила.',
   'Твои любимые духи.': 'Мои любимые духи.',
@@ -440,7 +467,8 @@ function finish() {
 function letterHTML(res) {
   return '<p class="lbl caps">Ты хочешь</p><p class="wish">' + tipo(res.wish) + '</p>'
     + '<p class="lbl caps">' + res.who[2] + ' подарит</p><h3 class="gift">' + tipo(res.gift) + '</h3>'
-    + '<p class="line">' + tipo(res.note) + '</p>';
+    + '<p class="line">' + tipo(res.note) + '</p>'
+    + '<dl class="extra"><dt class="lbl caps">Выбирал</dt><dd>' + tipo(res.took) + '</dd><dt class="lbl caps">Скажет</dt><dd>' + tipo(res.say) + '</dd></dl>';
 }
 function fillResult() {
   $('resWho').textContent = 'подарит ' + result.who[0];
@@ -596,12 +624,12 @@ function drawImage(res) {
   x.fillText(cap, 84, TOP + 190 + cs + 10);
   const top = TOP + 190 + cs + 90;
   /* низ: куда идти и кто сделал. Всегда на одном месте */
-  const B3 = BOTTOM - 4, B2 = B3 - 56, B1 = B2 - 66;
+  const B3 = BOTTOM - 4, B2 = B3 - 74, B1 = B2 - 66;   /* ник крупнее (версия 6): под адресом больше места */
   const addr = (location.host + location.pathname.replace(/index\.html$/, '')).replace(/\/$/, '');
   x.fillStyle = C.ink; x.font = '400 38px ' + SF; x.fillText('Узнай, что подарит твой:', 90, B1);
   let as = 50; x.font = '400 ' + as + 'px ' + SF; while (x.measureText(addr).width > W - 180 && as > 28) { as -= 2; x.font = '400 ' + as + 'px ' + SF; }
   x.fillStyle = C.accent; x.fillText(addr, 90, B2);
-  x.fillStyle = C.ink; x.font = '400 30px ' + SF; x.fillText('сделала @litinskaaya', 90, B3);
+  x.fillStyle = C.ink; x.font = '400 45px ' + SF; x.fillText('сделала @litinskaaya', 90, B3);   /* 45 вместо 30: в 1,5 раза крупнее (версия 6) */
   /* записка с итогом: если не помещается, уменьшается целиком */
   const L = 90, PW = W - 200, room = (B1 - 110) - top;
   const build = k => {
@@ -611,7 +639,16 @@ function drawImage(res) {
     const wl = wrapLines(x, tipo(res.wish), wishF, TW); rows.push({ kind: 'text', lines: wl, font: wishF, lh: 68 * k, at: h }); h += wl.length * 68 * k + 34 * k;
     rows.push({ kind: 'rule', at: h }); h += 44 * k;
     rows.push({ kind: 'caps', text: res.who[2] + ' подарит', font: capF, at: h + 34 * k }); h += 58 * k;
-    const gl = wrapLines(x, tipo(giftMe(res)), giftF, TW); rows.push({ kind: 'text', lines: gl, font: giftF, lh: 90 * k, at: h }); h += gl.length * 90 * k + P - 10 * k;
+    const gl = wrapLines(x, tipo(giftMe(res)), giftF, TW); rows.push({ kind: 'text', lines: gl, font: giftF, lh: 90 * k, at: h }); h += gl.length * 90 * k + 20 * k;
+    /* «Выбирал» и «Скажет» мелко под подарком (версия 6): подпись слева, текст колонкой справа */
+    rows.push({ kind: 'rule', at: h }); h += 34 * k;
+    const pairF = '400 ' + 38 * k + 'px ' + SF; x.font = capF;
+    const capW = t => [...t.toUpperCase()].reduce((w, ch) => w + x.measureText(ch).width + 6 * k, 0);
+    const col = Math.max(capW('Выбирал'), capW('Скажет')) + 26 * k;
+    [['Выбирал', res.took], ['Скажет', res.say]].forEach(([label, value], j) => {
+      const vl = wrapLines(x, tipo(value), pairF, TW - col); rows.push({ kind: 'pair', label, capF, col, lines: vl, font: pairF, lh: 48 * k, at: h }); h += vl.length * 48 * k + (j ? 0 : 10 * k);
+    });
+    h += P - 14 * k;
     return { rows, h, k, TX, TW };
   };
   let lay = build(1);
@@ -623,6 +660,8 @@ function drawImage(res) {
   lay.rows.forEach(rw => {
     if (rw.kind === 'rule') { x.fillStyle = 'rgba(78,42,30,.45)'; for (let dx = 0; dx < lay.TW; dx += 12) x.fillRect(lay.TX + dx, rw.at, 5, 3); return; }
     if (rw.kind === 'caps') { x.fillStyle = C.accent; x.font = rw.font; spaced(x, rw.text.toUpperCase(), lay.TX, rw.at, 6 * k); return; }
+    if (rw.kind === 'pair') { const y0 = rw.at + rw.lh * .76; x.fillStyle = C.accent; x.font = rw.capF; spaced(x, rw.label.toUpperCase(), lay.TX, y0, 6 * k);
+      x.fillStyle = C.ink; x.font = rw.font; rw.lines.forEach((l, i) => x.fillText(l, lay.TX + rw.col, y0 + rw.lh * i)); return; }
     x.fillStyle = C.ink; x.font = rw.font; rw.lines.forEach((l, i) => x.fillText(l, lay.TX, rw.at + rw.lh * (i + 1) - rw.lh * .24));
   });
   x.restore();
@@ -630,7 +669,7 @@ function drawImage(res) {
   return c;
 }
 const toBlob = c => new Promise(ok => c.toBlob(ok, 'image/png'));
-const plain = res => title(res, true) + '. Я хочу: ' + res.wish + '. ' + res.who[2] + ' подарит: ' + giftMe(res);
+const plain = res => title(res, true) + '. Я хочу: ' + res.wish + '. ' + res.who[2] + ' подарит: ' + giftMe(res) + ' Выбирал: ' + res.took + '. Скажет: ' + res.say + '.';
 /* файл картинки готовим заранее, как только показан итог: тогда «Отправить» открывает системное окно сразу после нажатия */
 function prepareImage() {
   const res = result; shareFile = null;
